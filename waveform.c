@@ -28,11 +28,14 @@ int hasStatusFlag(uint8_t flags, uint8_t flag) {
     return (flags & flag) != 0;
 }
 
-PhaseMetrics analysePhase(const WaveformSample *samples,
-                          size_t count,
-                          PhaseSelector phase) {
+PhaseMetrics analysePhase(const WaveformSample *samples,size_t count,PhaseSelector phase) {
 
-}PhaseMetrics metrics;
+    PhaseMetrics metrics;
+
+
+
+
+
 
  // Initialise
 metrics.rms = 0.0;

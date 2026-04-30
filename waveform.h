@@ -1,11 +1,12 @@
 //
 // Created by av2-anyanwu on 30/04/2026.
 //
+#include <stddef.h>
+#include <stdint.h>
 
 #ifndef UNTITLED_WAVEFORM_H
 #define UNTITLED_WAVEFORM_H
-#include <stddef.h>
-#include <stdint.h>
+
 #define NOMINAL_RMS_VOLTAGE 230.0
 #define RMS_TOLERANCE_PERCENT 10.0
 #define CLIPPING_LIMIT 324.9 // If the average voltage is more than this, flag the DC offset issue
@@ -37,7 +38,8 @@ typedef struct {
     double standardDeviation;
     int clippedSamples;
     int withinTolerance;
-    uint8_t statusFlags; } PhaseMetrics;
+    uint8_t statusFlags;
+} PhaseMetrics;
 
 typedef enum {
     PHASE_A,
@@ -45,5 +47,13 @@ typedef enum {
     PHASE_C
 } PhaseSelector;
 
+PhaseMetrics analysePhase(const WaveformSample *samples,
+                          size_t count,
+                          PhaseSelector phase);
 
+void sortSamplesByVoltageMagnitude(WaveformSample *samples,
+                                   size_t count,
+                                   PhaseSelector phase);
+
+int hasStatusFlag(uint8_t flags, uint8_t flag);
 #endif //UNTITLED_WAVEFORM_H

@@ -7,3 +7,8 @@ add_executable(untitled main.c
         io.c
         io.h
         waveform.h waveform.c)
+
+if(UNIX)
+    target_link_libraries(untitled m)
+endif()
+
