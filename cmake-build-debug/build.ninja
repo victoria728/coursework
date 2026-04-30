@@ -72,6 +72,12 @@ build CMakeFiles/untitled.dir/io.c.obj: C_COMPILER__untitled_Debug C$:/Users/av2
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir
 
+build CMakeFiles/untitled.dir/waveform.c.obj: C_COMPILER__untitled_Debug C$:/Users/av2-anyanwu/CLionProjects/untitled/waveform.c || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\waveform.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -80,7 +86,7 @@ build CMakeFiles/untitled.dir/io.c.obj: C_COMPILER__untitled_Debug C$:/Users/av2
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: C_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.c.obj CMakeFiles/untitled.dir/io.c.obj
+build untitled.exe: C_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.c.obj CMakeFiles/untitled.dir/io.c.obj CMakeFiles/untitled.dir/waveform.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir

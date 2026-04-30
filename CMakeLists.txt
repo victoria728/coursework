@@ -6,4 +6,4 @@ set(CMAKE_C_STANDARD 99)
 add_executable(untitled main.c
         io.c
         io.h
-        waveform.h)
+        waveform.h waveform.c)
