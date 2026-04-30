@@ -4,11 +4,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <io.h>
+#include "io.h"
 
 
 
-WaveformSample* loadCSV(const char *filename, int *count) { FILE *file = fopen(filename, "r"); if (file == NULL) return NULL;
+ WaveformSample* loadCSV(const char *filename, int *count) { FILE *file = fopen(filename, "r"); if (file == NULL) return NULL;
 
     int maxRows = 1000;
     WaveformSample *data = malloc(maxRows * sizeof(WaveformSample));

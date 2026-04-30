@@ -7,6 +7,6 @@
 
 #include "waveform.h"
 
-WaveformSample* loadcsv(const char*filename, int *count);
+WaveformSample* loadCSV(const char* filename, int *count);
 
 #endif //UNTITLED_IO_H
