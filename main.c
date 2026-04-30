@@ -8,11 +8,11 @@ int main() {
 
     int count = 0;  //stores how many rows were loaded
 
-    //losd the file snd return pointer to rows
-    WaveformSample *data = loadCSV("power_quality_log.csv", &count);
+    //log the file and return pointer to rows
+    WaveformSample *samples=loadCSv("power_quality_log.csv",&count);
 
 
-    if (data == NULL) {
+    if (samples == NULL) {
 
         printf("Error loading file\n");
 
@@ -20,11 +20,11 @@ int main() {
 
     }
 
-    printf("Loaded %d rows\n", count);
+    printf("Loaded %d samples\n",count);
 
 
 
-    free(data);
+    free(samples); //release memory after use
 
     return 0;
 

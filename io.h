@@ -5,7 +5,7 @@
 #ifndef UNTITLED_IO_H
 #define UNTITLED_IO_H
 
-#include <waveform.h>
+#include "waveform.h"
 
 WaveformSample* loadcsv(const char*filename, int *count);
 
