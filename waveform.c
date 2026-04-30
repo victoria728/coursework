@@ -2,10 +2,10 @@
 // Created by av2-anyanwu on 30/04/2026.
 //
 #include <stdio.h>
-#include "waveform.h"
 #include <math.h>
+#include "waveform.h"
 
-getPhaseVoltage();
+
  double getPhaseVoltage(const WaveformSample *sample,
                         PhaseSelector phase) {
     if (phase == PHASE_A) { return sample->phaseA;
@@ -14,7 +14,7 @@ getPhaseVoltage();
     }
     return sample->phaseC;
 }
-getPhaseName()
+
  const char* getPhaseName(PhaseSelector phase) {
     if (phase == PHASE_A) {
         return "Phase A";
@@ -27,11 +27,14 @@ getPhaseName()
 int hasStatusFlag(uint8_t flags, uint8_t flag) {
     return (flags & flag) != 0;
 }
+
 PhaseMetrics analysePhase(const WaveformSample *samples,
                           size_t count,
                           PhaseSelector phase) {
 
 }PhaseMetrics metrics;
+
+ // Initialise
 metrics.rms = 0.0;
 metrics.peakToPeak = 0.0;
 metrics.dcOffset = 0.0;
@@ -45,7 +48,9 @@ metrics.statusFlags = 0;
 
 if (samples == NULL || count == 0) {
     return metrics;
-} double sum = 0.0;
+}
+
+double sum = 0.0;
 double sumSquares = 0.0;
 
  double firstVoltage = getPhaseVoltage(samples, phase);
@@ -59,13 +64,10 @@ double sumSquares = 0.0;
       sum += voltage;
       sumSquares += voltage * voltage;
 
-      if (voltage < minVoltage) {
-          minVoltage = voltage;
-      }
+      if (voltage < minVoltage) minVoltage = voltage;
 
-      if (voltage > maxVoltage) {
-          maxVoltage = voltage;
-      }
+      if (voltage > maxVoltage) maxVoltage = voltage;
+
 
       if (fabs(voltage) >= CLIPPING_LIMIT) {
           metrics.clippedSamples++;
@@ -78,14 +80,15 @@ double sumSquares = 0.0;
   metrics.maximum = maxVoltage;
   metrics.peakToPeak = maxVoltage - minVoltage;
 
-   Second pass: variance needs the mean first.
 
    double varianceSum = 0.0;
+
    for (size_t i = 0; i < count; i++) {
        const WaveformSample *currentSample = samples + i;
        double voltage = getPhaseVoltage(currentSample, phase);
-       double difference = voltage - metrics.dcOffset;
-       varianceSum += difference * difference;
+
+       double diff = voltage - metrics.dcOffset;
+       varianceSum += diff * diff;
    }
 
    metrics.variance = varianceSum / count;
@@ -97,40 +100,46 @@ double sumSquares = 0.0;
     if (metrics.rms >= lowerLimit && metrics.rms <= upperLimit) {
         metrics.withinTolerance = 1;
     } else {
-        metrics.withinTolerance = 0;
         metrics.statusFlags |= STATUS_OUT_OF_TOLERANCE;
     }
 
     if (metrics.clippedSamples > 0) {
         metrics.statusFlags |= STATUS_CLIPPING;
     }
+
     if (fabs(metrics.dcOffset) > DC_OFFSET_LIMIT) {
 metrics.statusFlags |= STATUS_DC_OFFSET;
 }
- sortSamplesByVoltageMagnitude()
+  return metrics;
+
+}
 
 
   void sortSamplesByVoltageMagnitude(WaveformSample *samples,
                                      size_t count,
                                      PhaseSelector phase) {
 
-        if (samples == NULL || count == 0) {
-            return;
-        } for (size_t i = 1; i < count; i++) {
+      if (samples == NULL || count == 0) return;
 
-            WaveformSample key = samples[i];
-            double keyMagnitude = fabs(getPhaseVoltage(&key, phase));
-            size_t j = i;
-            while (j > 0) {
-                double previousMagnitude =
-                        fabs(getPhaseVoltage(&samples[j - 1], phase));
-                if (previousMagnitude >= keyMagnitude) {
-                    break;
-                }
+      for (size_t i = 1; i < count; i++) {
 
-                samples[j] = samples[j - 1];
-                j--;
-            }
-            samples[j] = key;
-        }
-    }
+          WaveformSample key = samples[i];
+          double keyMagnitude = fabs(getPhaseVoltage(&key, phase));
+
+          size_t j = i;
+
+          while (j > 0) {
+
+              double previousMagnitude =
+                      fabs(getPhaseVoltage(&samples[j - 1], phase));
+
+              if (previousMagnitude >= keyMagnitude) break;
+
+
+              samples[j] = samples[j - 1];
+              j--;
+          }
+          samples[j] = key;
+      }
+
+  }
