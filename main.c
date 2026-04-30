@@ -9,7 +9,7 @@ int main() {
     int count = 0;  //stores how many rows were loaded
 
     //log the file and return pointer to rows
-    WaveformSample *samples= int loadCSV("power_quality_log.csv",&count);
+    WaveformSample *samples=  loadCSV("power_quality_log.csv",&count);
 
 
     if (samples == NULL) {
