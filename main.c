@@ -1,18 +1,28 @@
 #include <stdio.h>
+
 #include <stdlib.h>
+
 #include "io.h"
+
 #include "waveform.h"
+
 
 
 int main() {
 
-    int count = 0;  //stores how many rows were loaded
-
-    //log the file and return pointer to rows
-    WaveformSample *samples=  loadCSV("power_quality_log.csv",&count);
 
 
-    if (samples == NULL) {
+    WaveformSample *samples = NULL;
+
+    size_t count = 0;
+
+
+
+    int loaded = loadCSV("power_quality_log.csv", &samples, &count);
+
+
+
+    if (!loaded) {
 
         printf("Error loading file\n");
 
@@ -20,11 +30,17 @@ int main() {
 
     }
 
-    printf("Loaded %d samples\n",count);
+
+
+    printf("Loaded %zu samples\n", count);
 
 
 
-    free(samples); //release memory after use
+
+
+    free(samples);
+
+
 
     return 0;
 

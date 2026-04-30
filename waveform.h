@@ -4,6 +4,15 @@
 
 #ifndef UNTITLED_WAVEFORM_H
 #define UNTITLED_WAVEFORM_H
+#include <stddef.h>
+#include <stdint.h>
+#define NOMINAL_RMS_VOLTAGE 230.0
+#define RMS_TOLERANCE_PERCENT 10.0
+#define CLIPPING_LIMIT 324.9 // If the average voltage is more than this, flag the DC offset issue
+#define DC_OFFSET_LIMIT 5.0 // Bitwise status flags
+ #define STATUS_CLIPPING 0x01 // bit 0
+  #define STATUS_OUT_OF_TOLERANCE 0x02 // bit 1
+  #define STATUS_DC_OFFSET 0x04 // bit 2
 
 typedef struct {
 
@@ -17,5 +26,24 @@ typedef struct {
     double thd;
 
 } WaveformSample;
+
+typedef struct {
+    double rms;
+    double peakToPeak;
+    double dcOffset;
+    double minimum;
+    double maximum;
+    double variance;
+    double standardDeviation;
+    int clippedSamples;
+    int withinTolerance;
+    uint8_t statusFlags; } PhaseMetrics;
+
+typedef enum {
+    PHASE_A,
+    PHASE_B,
+    PHASE_C
+} PhaseSelector;
+
 
 #endif //UNTITLED_WAVEFORM_H
