@@ -1,0 +1,63 @@
+========================================
+POWER QUALITY ANALYSIS REPORT
+========================================
+
+Input file: power_quality_log.csv
+Samples loaded: 1000
+
+PHASE A
+-----------------------------
+RMS Voltage: 229.81 V
+Peak-to-Peak Voltage: 650.00 V
+DC Offset: -0.00 V
+Minimum Voltage: -325.00 V
+Maximum Voltage: 325.00 V
+Variance: 52812.50
+Standard Deviation: 229.81
+Clipped Samples: 20
+Tolerance Check: PASS
+Status Flags: 0x01
+Status Meaning:
+- Clipping detected
+
+PHASE B
+-----------------------------
+RMS Voltage: 229.81 V
+Peak-to-Peak Voltage: 649.86 V
+DC Offset: 0.00 V
+Minimum Voltage: -324.93 V
+Maximum Voltage: 324.93 V
+Variance: 52812.50
+Standard Deviation: 229.81
+Clipped Samples: 20
+Tolerance Check: PASS
+Status Flags: 0x01
+Status Meaning:
+- Clipping detected
+
+PHASE C
+-----------------------------
+RMS Voltage: 229.81 V
+Peak-to-Peak Voltage: 649.86 V
+DC Offset: -0.00 V
+Minimum Voltage: -324.93 V
+Maximum Voltage: 324.93 V
+Variance: 52812.50
+Standard Deviation: 229.81
+Clipped Samples: 20
+Tolerance Check: PASS
+Status Flags: 0x01
+Status Meaning:
+- Clipping detected
+
+SYSTEM STATUS
+-----------------------------
+WARNING / FAULT
+
+TOP VOLTAGE MAGNITUDES FOR PHASE A
+-----------------------------
+1) Time: 0.005000 s, Phase A: 325.00 V
+2) Time: 0.045000 s, Phase A: 325.00 V
+3) Time: 0.055000 s, Phase A: -325.00 V
+4) Time: 0.165000 s, Phase A: 325.00 V
+5) Time: 0.015000 s, Phase A: -325.00 V
