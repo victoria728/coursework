@@ -1,6 +1,7 @@
 //
 // Created by av2-anyanwu on 30/04/2026.
 //
+#include <stdint.h>
 #include <stdio.h>
 #include <math.h>
 #include "waveform.h"
